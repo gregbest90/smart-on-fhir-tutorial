@@ -1,13 +1,14 @@
 (function(window){
-  window.extractData = function() {
+function extractData() {
     var ret = $.Deferred();
 
-    function onError() {
+ function onError() {
       console.log('Loading error', arguments);
       ret.reject();
     }
 
-    function onReady(smart)  {
+  function onReady(smart)  {
+    //checking to make sure this app has launch scope
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
@@ -15,16 +16,19 @@
                     type: 'Observation',
                     query: {
                       code: {
+                        // $or - allows for list of values
                         $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
                               'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
                               'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
                       }
                     }
                   });
-
+        //error handling
         $.when(pt, obv).fail(onError);
-
+        //if successful            
         $.when(pt, obv).done(function(patient, obv) {
+          console.log(patient);
+          console.log(obv);
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
@@ -72,7 +76,7 @@
 
   };
 
-  function defaultPatient(){
+function defaultPatient(){
     return {
       fname: {value: ''},
       lname: {value: ''},
@@ -86,7 +90,7 @@
     };
   }
 
-  function getBloodPressureValue(BPObservations, typeOfPressure) {
+function getBloodPressureValue(BPObservations, typeOfPressure) {
     var formattedBPObservations = [];
     BPObservations.forEach(function(observation){
       var BP = observation.component.find(function(component){
@@ -103,7 +107,7 @@
     return getQuantityValueAndUnit(formattedBPObservations[0]);
   }
 
-  function getQuantityValueAndUnit(ob) {
+function getQuantityValueAndUnit(ob) {
     if (typeof ob != 'undefined' &&
         typeof ob.valueQuantity != 'undefined' &&
         typeof ob.valueQuantity.value != 'undefined' &&
@@ -114,7 +118,7 @@
     }
   }
 
-  window.drawVisualization = function(p) {
+var drawVisualization = function(p) {
     $('#holder').show();
     $('#loading').hide();
     $('#fname').html(p.fname);
