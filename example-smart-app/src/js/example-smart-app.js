@@ -56,6 +56,14 @@ function extractData() {
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
+          var allergyTable = "<table>";
+          var allergyLen = allergies.length
+          for (var i=0;i<allergyLen;i++){
+            allergyTable += "<tr><td>"+allergies[i].substance.text+"</td></tr>";
+          }
+          if (allergyLen === 0) {
+              allergyTable += "<tr><td>No Allergies Found</td></tr>";
+          }
 
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
