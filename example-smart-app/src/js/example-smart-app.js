@@ -58,12 +58,13 @@ function extractData() {
           var ldl = byCodes('2089-1');
           var allergyTable = "<table>";
           var allergyLen = allergies.length
+          var allergyJLen = allergies[i].reaction.length
 
           for (var i = 0; i < allergyLen; i++){
             var reactionStr = [];
             if(allergies[i].reaction !== undefined) {
 
-              for (var j = 0, jLen = allergies[i].reaction.length; j < jLen; j++){
+              for (var j = 0; j < allergyJLen; j++){
                 
                 reactionStr.push(allergies[i].reaction[j].manifestation[0].text);
               }
