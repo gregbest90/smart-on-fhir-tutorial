@@ -1,4 +1,3 @@
-(function(window){
 function extractData() {
     var ret = $.Deferred();
 
@@ -131,5 +130,3 @@ var drawVisualization = function(p) {
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
   };
-
-})(window);
