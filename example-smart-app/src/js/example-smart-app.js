@@ -83,6 +83,7 @@ function extractData() {
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
+          p.allergies = allergyTable
 
           ret.resolve(p);
         });
