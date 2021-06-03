@@ -36,7 +36,7 @@ function extractData() {
         //error handling
         $.when(pt, obv, alg).fail(onError);
         //if successful            
-        $.when(pt, obv).done(function(patient, obv, allergies) {
+        $.when(pt, obv, alg).done(function(patient, obv, allergies) {
           console.log(patient);
           console.log(obv);
           console.log(allergies)
