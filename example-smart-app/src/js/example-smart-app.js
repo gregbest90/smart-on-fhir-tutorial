@@ -20,15 +20,28 @@ function extractData() {
                               'http://loinc.org|8480-6', 'http://loinc.org|2085-9',
                               'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
                       },
-                      date: 'gt2020-01-01'
+                      date: 'gt2020-01-01',
+                      category: 'vital-signs'
                     }
                   });
+
+        var alg = smart.patient.api.fetchAll({
+                    type: 'AllergyIntolerance',
+                    query: {
+                      code: {
+                        // $or - allows for list of values
+                        $or: ['active', 'confirmed', 'unconfirmed']
+                      },
+                    }
+                  });
+
         //error handling
-        $.when(pt, obv).fail(onError);
+        $.when(pt, obv, lag).fail(onError);
         //if successful            
-        $.when(pt, obv).done(function(patient, obv) {
+        $.when(pt, obv).done(function(patient, obv, allergies) {
           console.log(patient);
           console.log(obv);
+          console.log(allergies)
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
