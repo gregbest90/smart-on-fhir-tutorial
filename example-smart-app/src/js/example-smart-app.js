@@ -59,14 +59,11 @@ function extractData() {
           var allergyTable = "<table>";
           var allergyLen = allergies.length;
           
-
           for (var i = 0; i < allergyLen; i++){
             var reactionStr = [];
             
             if(allergies[i].reaction !== undefined) {
-              var allergyJLen = allergies[i].reaction.length;
-              for (var j = 0; j < allergyJLen; j++){
-                
+              for (var j = 0, jLen = allergies[i].reaction.length; j < jLen; j++){
                 reactionStr.push(allergies[i].reaction[j].manifestation[0].text);
               }
             }
