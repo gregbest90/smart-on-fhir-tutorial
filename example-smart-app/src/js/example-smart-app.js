@@ -64,6 +64,7 @@ function extractData() {
           if (allergyLen === 0) {
               allergyTable += "<tr><td>No Allergies Found</td></tr>";
           }
+          allergyTable += "</table>";
 
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
