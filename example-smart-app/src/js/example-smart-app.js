@@ -98,6 +98,7 @@ function defaultPatient(){
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+      allergies: {value: ''}
     };
   }
 
@@ -141,4 +142,5 @@ var drawVisualization = function(p) {
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#allergyIntolerance').html(p.allergies);
   };
