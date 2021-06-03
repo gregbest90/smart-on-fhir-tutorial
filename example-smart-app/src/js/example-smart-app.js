@@ -28,11 +28,9 @@ function extractData() {
         var alg = smart.patient.api.fetchAll({
                     type: 'AllergyIntolerance',
                     query: {
-                      code: {
-                        // $or - allows for list of values
-                        $or: ['active', 'confirmed', 'unconfirmed']
-                      },
-                    }
+                        status = 'active, confirmed, unconfirmed'
+
+                      }
                   });
 
         //error handling
