@@ -63,12 +63,12 @@ function extractData() {
             var reactionStr = [];
             if(allergies[i].reaction !== undefined) {
 
-              for (var j = 0, jLen=allergies[i].reaction.length; j < jLen ; j++)
-              {
+              for (var j = 0, jLen = allergies[i].reaction.length; j < jLen; j++){
+                
                 reactionStr.push(allergies[i].reaction[j].manifestation[0].text);
               }
             }
-            allergyTable += "<tr><td>"+allergies[i].substance.text+"</td></tr>";
+            allergyTable += "<tr><td>" + allergies[i].substance.text + "</td><td>" + reactionStr.join(',') + "</td></tr>";
           }
           if (allergyLen === 0) 
           {
