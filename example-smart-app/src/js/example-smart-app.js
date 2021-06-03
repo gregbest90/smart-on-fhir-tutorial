@@ -58,7 +58,8 @@ function extractData() {
           var ldl = byCodes('2089-1');
           var allergyTable = "<table>";
           var allergyLen = allergies.length
-          for (var i=0;i<allergyLen;i++){
+          for (var i=0;len=allergyLen;i++){
+
             allergyTable += "<tr><td>"+allergies[i].substance.text+"</td></tr>";
           }
           if (allergyLen === 0) {
@@ -83,7 +84,7 @@ function extractData() {
 
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
-          p.allergies = allergyTable
+          p.allergies = allergyTable;
 
           ret.resolve(p);
         });
